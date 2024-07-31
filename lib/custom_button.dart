@@ -10,10 +10,12 @@ class CustomButton extends StatelessWidget {
   final bool showText;
   final bool showLeftIcon;
   final bool showRightIcon;
+  final VoidCallback onPressed;
 
   const CustomButton({
     super.key,
     required this.variant,
+    required this.onPressed,
     this.text = '',
     this.leftIcon = Icons.access_time,
     this.rightIcon = Icons.access_time,
@@ -43,41 +45,43 @@ class CustomButton extends StatelessWidget {
         textColor = const Color(0xFF006FFD);
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 16),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: borderColor),
-      ),
-      constraints: const BoxConstraints(minHeight: 40),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          if (showLeftIcon != false)
-            Icon(
-              leftIcon,
-              color: textColor,
-              size: 12,
-            ),
-          if (showLeftIcon != false) const SizedBox(width: 8),
-          if (showText)
-            Text(text,
-                style: TextStyle(
-                    color: textColor,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16)),
-          if (showRightIcon != false) const SizedBox(width: 8),
-          if (showRightIcon != false)
-            Icon(
-              rightIcon,
-              color: textColor,
-              size: 12,
-            ),
-        ],
-      ),
-    );
+    return GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 16),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: borderColor),
+          ),
+          constraints: const BoxConstraints(minHeight: 40),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (showLeftIcon != false)
+                Icon(
+                  leftIcon,
+                  color: textColor,
+                  size: 12,
+                ),
+              if (showLeftIcon != false) const SizedBox(width: 8),
+              if (showText)
+                Text(text,
+                    style: TextStyle(
+                        color: textColor,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16)),
+              if (showRightIcon != false) const SizedBox(width: 8),
+              if (showRightIcon != false)
+                Icon(
+                  rightIcon,
+                  color: textColor,
+                  size: 12,
+                ),
+            ],
+          ),
+        ));
   }
 }

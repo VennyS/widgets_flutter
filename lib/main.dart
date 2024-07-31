@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'custom_tag.dart';
 import 'custom_button.dart';
@@ -71,17 +73,20 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () => print("Highlight click"),
               ),
               const SizedBox(height: 24),
-              const CustomButton(
+              CustomButton(
+                onPressed: () => print("Primary click"),
                 variant: CustomButtonVariants.primary,
                 text: "Click me",
               ),
               const SizedBox(height: 24),
-              const CustomButton(
+              CustomButton(
+                onPressed: () => print("Secondary click"),
                 variant: CustomButtonVariants.secondary,
                 text: "Click me",
               ),
               const SizedBox(height: 24),
-              const CustomButton(
+              CustomButton(
+                onPressed: () => print("Terciary click"),
                 variant: CustomButtonVariants.terciary,
                 text: "Click me",
               ),
