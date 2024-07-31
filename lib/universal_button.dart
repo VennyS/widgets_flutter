@@ -57,6 +57,7 @@ class UniversalButton extends StatelessWidget {
                     title,
                     maxLines: 2,
                     style: TextStyle(
+                      fontFamily: 'Roboto',
                       color: state == UniversalButtonState.active
                           ? Colors.black
                           : Colors.white,
@@ -69,6 +70,7 @@ class UniversalButton extends StatelessWidget {
                     desc,
                     maxLines: 4,
                     style: TextStyle(
+                      fontFamily: 'Roboto',
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: state == UniversalButtonState.active

@@ -62,7 +62,13 @@ class CustomButton extends StatelessWidget {
               size: 12,
             ),
           if (showLeftIcon != false) const SizedBox(width: 8),
-          if (showText) Text(text, style: TextStyle(color: textColor)),
+          if (showText)
+            Text(text,
+                style: TextStyle(
+                    color: textColor,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16)),
           if (showRightIcon != false) const SizedBox(width: 8),
           if (showRightIcon != false)
             Icon(

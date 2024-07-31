@@ -34,7 +34,12 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(
+              fontFamily: 'Roboto', fontWeight: FontWeight.w600),
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Center(

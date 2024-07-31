@@ -76,7 +76,12 @@ class CustomTagState extends State<CustomTag> {
             if (widget.showLeftIcon) const SizedBox(width: 8),
             if (widget.showText)
               Center(
-                  child: Text(widget.text, style: TextStyle(color: textColor))),
+                  child: Text(widget.text,
+                      style: TextStyle(
+                          color: textColor,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10))),
             if (widget.showRightIcon) const SizedBox(width: 8),
             if (widget.showRightIcon)
               Icon(
