@@ -1,16 +1,5 @@
-# widgets
+Этот проект содержит виджеты для flutter'a.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. ![Универсальная кнопка с картинкой](https://github.com/user-attachments/assets/d00ae07a-b9c3-46e0-9ed0-d9bd5ec226c4)
+2. ![Кнопка](https://github.com/user-attachments/assets/eeadb847-3196-4184-a2d1-b3e782e14107)
+3. ![Тэг](https://github.com/user-attachments/assets/c5dac3a8-c4f6-4bda-8c23-eede24f62c35)
