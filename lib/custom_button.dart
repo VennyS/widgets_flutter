@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 enum CustomButtonVariants { primary, secondary, terciary }
 
-// TODO: Поправить центирование текста и расположение иконок
-// и внести изменения в проект с виджетами.
 class CustomButton extends StatelessWidget {
   final String text;
   final CustomButtonVariants variant;
@@ -78,7 +76,7 @@ class CustomButton extends StatelessWidget {
                 style: TextStyle(
                   color: textColor,
                   fontFamily: 'Inter',
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
               ),
