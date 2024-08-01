@@ -1,95 +1,133 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-enum CustomButtonVariants { primary, secondary, terciary }
+enum UniversalButtonState { active, highlight, skeleton }
 
-class CustomButton extends StatelessWidget {
-  final String text;
-  final CustomButtonVariants variant;
-  final String? leftImage;
-  final String? rightImage;
-  final bool showText;
-  final bool showLeftImage;
-  final bool showRightImage;
+class UniversalButton extends StatelessWidget {
+  final int id;
+  final String title;
+  final String desc;
+  final UniversalButtonState state;
   final VoidCallback onPressed;
 
-  const CustomButton({
+  const UniversalButton({
     super.key,
-    required this.variant,
+    required this.id,
+    required this.title,
+    required this.desc,
+    required this.state,
     required this.onPressed,
-    this.text = '',
-    this.leftImage,
-    this.rightImage,
-    this.showText = true,
-    this.showLeftImage = false,
-    this.showRightImage = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    Color borderColor;
-    Color backgroundColor;
-    Color textColor;
-
-    switch (variant) {
-      case CustomButtonVariants.primary:
-        borderColor = Colors.transparent;
-        backgroundColor = const Color(0xFF006FFD);
-        textColor = Colors.white;
-        break;
-      case CustomButtonVariants.secondary:
-        borderColor = const Color(0xFF006FFD);
-        backgroundColor = Colors.transparent;
-        textColor = const Color(0xFF006FFD);
-        break;
-      case CustomButtonVariants.terciary:
-        borderColor = Colors.transparent;
-        backgroundColor = Colors.transparent;
-        textColor = const Color(0xFF006FFD);
-        break;
+    switch (state) {
+      case UniversalButtonState.active:
+        return buildReal(UniversalButtonState.active);
+      case UniversalButtonState.highlight:
+        return buildReal(UniversalButtonState.highlight);
+      case UniversalButtonState.skeleton:
+        return buildSkeleton();
     }
+  }
 
+  Widget buildReal(UniversalButtonState state) {
     return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 16),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: borderColor),
-        ),
-        constraints: const BoxConstraints(minHeight: 40),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (showLeftImage && leftImage != null)
-              Image.asset(
-                leftImage!,
-                height: 16,
-                width: 16,
-                color: textColor,
+        onTap: onPressed,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          width: 186,
+          height: 150,
+          decoration: BoxDecoration(
+            color: state == UniversalButtonState.active
+                ? const Color.fromRGBO(255, 255, 255, 1)
+                : const Color.fromRGBO(160, 63, 255, 1),
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: const [
+              BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.25), blurRadius: 4),
+            ],
+          ),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      color: state == UniversalButtonState.active
+                          ? Colors.black
+                          : Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      height: 1.3,
+                    ),
+                  ),
+                  Text(
+                    desc,
+                    maxLines: 4,
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: state == UniversalButtonState.active
+                          ? const Color.fromRGBO(145, 129, 166, 1)
+                          : const Color.fromRGBO(214, 181, 255, 1),
+                      height: 1.2,
+                    ),
+                  ),
+                ],
               ),
-            if (showLeftImage) const SizedBox(width: 8),
-            if (showText)
-              Text(
-                text,
-                style: TextStyle(
-                  color: textColor,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w900,
-                  fontSize: 16,
-                ),
-              ),
-            if (showRightImage) const SizedBox(width: 8),
-            if (showRightImage && rightImage != null)
-              Image.asset(
-                rightImage!,
-                height: 16,
-                width: 16,
-                color: textColor,
-              ),
-          ],
-        ),
+              Positioned(
+                  bottom: 0.14,
+                  right: 0,
+                  child: Transform.rotate(
+                    angle: pi / 12,
+                    child: Image.asset(
+                      'assets/pngs/rocket.png',
+                      width: 66,
+                      height: 66,
+                    ),
+                  )),
+            ],
+          ),
+        ));
+  }
+
+  Widget buildSkeleton() {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      width: 186,
+      height: 150,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(255, 255, 255, 1),
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: const [
+          BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.25), blurRadius: 4),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 166,
+            height: 26,
+            decoration: BoxDecoration(
+                color: const Color.fromRGBO(241, 237, 245, 1),
+                borderRadius: BorderRadius.circular(12)),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            width: 104,
+            height: 15,
+            decoration: BoxDecoration(
+                color: const Color.fromRGBO(241, 237, 245, 1),
+                borderRadius: BorderRadius.circular(12)),
+          ),
+        ],
       ),
     );
   }
