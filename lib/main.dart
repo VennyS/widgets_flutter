@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:widgets/theme.dart';
 import 'custom_tag.dart';
 import 'custom_button.dart';
 import 'universal_button.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,10 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006FFD)),
-        useMaterial3: true,
-      ),
+      theme: BlueTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Виджеты'),
     );
@@ -30,6 +29,8 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
+  final String dotSvgPath = "assets/svgs/dot.svg";
+  final String playSvgPath = "assets/svgs/play.svg";
 
   @override
   Widget build(BuildContext context) {
@@ -76,22 +77,40 @@ class MyHomePage extends StatelessWidget {
               CustomButton(
                 onPressed: () => print("Primary click"),
                 variant: CustomButtonVariants.primary,
-                text: "Click me",
+                text: "Button",
+                leftSvg: SvgPicture.asset(dotSvgPath,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+                showLeftSvg: true,
+                rightSvg: SvgPicture.asset(dotSvgPath,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+                showRightSvg: true,
               ),
               const SizedBox(height: 24),
               CustomButton(
                 onPressed: () => print("Secondary click"),
                 variant: CustomButtonVariants.secondary,
-                text: "Click me",
+                text: "Button",
               ),
               const SizedBox(height: 24),
               CustomButton(
                 onPressed: () => print("Terciary click"),
                 variant: CustomButtonVariants.terciary,
-                text: "Click me",
+                text: "Button",
               ),
               const SizedBox(height: 24),
-              const CustomTag(text: "Tag"),
+              CustomTag(
+                text: "Tag",
+                leftSvg: SvgPicture.asset(playSvgPath,
+                    colorFilter: ColorFilter.mode(
+                        Theme.of(context).primaryColor, BlendMode.srcIn)),
+                showLeftSvg: true,
+                rightSvg: SvgPicture.asset(dotSvgPath,
+                    colorFilter: ColorFilter.mode(
+                        Theme.of(context).primaryColor, BlendMode.srcIn)),
+                showRightSvg: true,
+              ),
               const SizedBox(height: 24),
             ],
           ),
