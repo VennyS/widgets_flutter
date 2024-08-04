@@ -13,6 +13,8 @@ class CustomButton extends StatelessWidget {
   final bool showLeftSvg;
   final bool showRightSvg;
   final VoidCallback onPressed;
+  final double? width;
+  final double? height;
 
   const CustomButton({
     super.key,
@@ -22,6 +24,8 @@ class CustomButton extends StatelessWidget {
     this.leftSvg,
     this.rightSvg,
     this.accentColor,
+    this.width,
+    this.height,
     this.showText = true,
     this.showLeftSvg = false,
     this.showRightSvg = false,
@@ -56,6 +60,8 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
+        width: width,
+        height: height,
         padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 16),
         decoration: BoxDecoration(
           color: backgroundColor,
