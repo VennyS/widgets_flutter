@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final CustomButtonVariants variant;
   final SvgPicture? leftSvg;
   final SvgPicture? rightSvg;
+  final Color? accentColor;
   final bool showText;
   final bool showLeftSvg;
   final bool showRightSvg;
@@ -20,6 +21,7 @@ class CustomButton extends StatelessWidget {
     this.text = '',
     this.leftSvg,
     this.rightSvg,
+    this.accentColor,
     this.showText = true,
     this.showLeftSvg = false,
     this.showRightSvg = false,
@@ -27,6 +29,8 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color primaryColor = accentColor ?? Theme.of(context).primaryColor;
+
     Color borderColor;
     Color backgroundColor;
     Color textColor;
@@ -34,18 +38,18 @@ class CustomButton extends StatelessWidget {
     switch (variant) {
       case CustomButtonVariants.primary:
         borderColor = Colors.transparent;
-        backgroundColor = Theme.of(context).primaryColor;
+        backgroundColor = primaryColor;
         textColor = Colors.white;
         break;
       case CustomButtonVariants.secondary:
-        borderColor = Theme.of(context).primaryColor;
+        borderColor = primaryColor;
         backgroundColor = Colors.transparent;
-        textColor = Theme.of(context).primaryColor;
+        textColor = primaryColor;
         break;
       case CustomButtonVariants.terciary:
         borderColor = Colors.transparent;
         backgroundColor = Colors.transparent;
-        textColor = Theme.of(context).primaryColor;
+        textColor = primaryColor;
         break;
     }
 
