@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:widgets/theme.dart';
+import 'code_form.dart';
 import 'custom_tag.dart';
 import 'custom_button.dart';
 import 'universal_button.dart';
@@ -50,6 +51,12 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 8),
+              CodeInputWidget(
+                onCodeEntered: (code) => print('Entered code: $code'),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
               UniversalButton(
                 id: 12,
                 title: "Заголовок, максимум 2 строк",
