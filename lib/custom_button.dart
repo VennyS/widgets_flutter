@@ -3,20 +3,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 enum CustomButtonVariants { primary, secondary, terciary }
 
-class CustomButton extends StatelessWidget {
+class CustomButtonWidget extends StatelessWidget {
   final String text;
   final CustomButtonVariants variant;
   final SvgPicture? leftSvg;
   final SvgPicture? rightSvg;
   final Color? accentColor;
+  final Color? textColor;
   final bool showText;
   final bool showLeftSvg;
   final bool showRightSvg;
   final VoidCallback onPressed;
   final double? width;
   final double? height;
+  final double radius;
 
-  const CustomButton({
+  const CustomButtonWidget({
     super.key,
     required this.variant,
     required this.onPressed,
@@ -24,8 +26,10 @@ class CustomButton extends StatelessWidget {
     this.leftSvg,
     this.rightSvg,
     this.accentColor,
+    this.textColor,
     this.width,
     this.height,
+    this.radius = 12,
     this.showText = true,
     this.showLeftSvg = false,
     this.showRightSvg = false,
@@ -65,7 +69,7 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12.5, horizontal: 16),
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(radius),
           border: Border.all(color: borderColor),
         ),
         constraints: const BoxConstraints(minHeight: 40),
@@ -78,12 +82,12 @@ class CustomButton extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildChildren(Color textColor) {
+  List<Widget> _buildChildren(Color colorOfText) {
     List<Widget> children = [];
 
     if (showLeftSvg && leftSvg != null) {
       children.add(leftSvg!);
-      children.add(const SizedBox(width: 8));
+      if (showText) children.add(const SizedBox(width: 8));
     }
 
     if (showText) {
@@ -91,7 +95,7 @@ class CustomButton extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: textColor,
+            color: textColor ?? colorOfText,
             fontFamily: 'Inter',
             fontWeight: FontWeight.w600,
             fontSize: 16,

@@ -81,7 +81,7 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () => print("Highlight click"),
               ),
               const SizedBox(height: 24),
-              CustomButton(
+              CustomButtonWidget(
                 onPressed: () => print("Primary click"),
                 variant: CustomButtonVariants.primary,
                 text: "Button",
@@ -95,13 +95,13 @@ class MyHomePage extends StatelessWidget {
                 showRightSvg: true,
               ),
               const SizedBox(height: 24),
-              CustomButton(
+              CustomButtonWidget(
                 onPressed: () => print("Secondary click"),
                 variant: CustomButtonVariants.secondary,
                 text: "Button",
               ),
               const SizedBox(height: 24),
-              CustomButton(
+              CustomButtonWidget(
                 onPressed: () => print("Terciary click"),
                 variant: CustomButtonVariants.terciary,
                 text: "Button",

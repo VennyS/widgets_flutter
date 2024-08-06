@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 class CodeInputWidget extends StatefulWidget {
   final int codeLength;
   final ValueChanged<String> onCodeEntered;
+  final Color? accentColor;
 
-  CodeInputWidget({
-    Key? key,
+  const CodeInputWidget({
+    super.key,
     this.codeLength = 4,
     required this.onCodeEntered,
-  }) : super(key: key);
+    this.accentColor,
+  });
 
   @override
-  _CodeInputWidgetState createState() => _CodeInputWidgetState();
+  CodeInputWidgetState createState() => CodeInputWidgetState();
 }
 
-class _CodeInputWidgetState extends State<CodeInputWidget> {
+class CodeInputWidgetState extends State<CodeInputWidget> {
   late List<FocusNode> focusNodes;
   late List<TextEditingController> controllers;
 
@@ -37,6 +39,13 @@ class _CodeInputWidgetState extends State<CodeInputWidget> {
     super.dispose();
   }
 
+  void clearCode() {
+    for (var controller in controllers) {
+      controller.clear();
+    }
+    focusNodes[0].requestFocus();
+  }
+
   void nextField(String value, int index) {
     if (value.length == 1) {
       if (index < widget.codeLength - 1) {
@@ -57,6 +66,7 @@ class _CodeInputWidgetState extends State<CodeInputWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: List.generate(widget.codeLength, (index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -76,7 +86,7 @@ class _CodeInputWidgetState extends State<CodeInputWidget> {
               maxLength: 1,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: const Color(0xFFF1EDF5),
+                fillColor: widget.accentColor ?? const Color(0xFFF1EDF5),
                 counterText: '',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
