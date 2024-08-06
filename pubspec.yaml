@@ -86,6 +86,7 @@ flutter:
     - family: Inter
       fonts:
         - asset: assets/fonts/inter.ttf
+        - asset: assets/fonts/inter-bold.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
