@@ -54,14 +54,21 @@ class MyHomePage extends StatelessWidget {
             children: [
               const SizedBox(height: 8),
               // allWidgets(context),
-              ToastWidget(
-                key: toastKey,
-                onTapClose: onTapClose,
-                variant: ToastVariant.informative,
-                title: "Title",
-                description: "Description. Lorem ipsum\n dolor sit amet.",
-                showTitle: true,
-                showDescription: true,
+              UniversalButton(
+                id: 12,
+                title: "Заголовок, максимум 2 строк",
+                desc: "Описание краткое, максимум 3-4 строчки",
+                state: UniversalButtonState.active,
+                onPressed: () {
+                  ToastManager().showToast(
+                      context,
+                      ToastWidget(
+                        variant: ToastVariant.informative,
+                        title: "Успешно!",
+                        description:
+                            "Добро пожаловать в приложение фитнес-клуба GYMATECH",
+                      ));
+                },
               ),
               const SizedBox(height: 8),
             ],
@@ -72,80 +79,87 @@ class MyHomePage extends StatelessWidget {
   }
 
   void onTapClose() {
-    toastKey.currentState?.hideToast();
-  }
+    ToastManager().hideToast;
 
-  Widget allWidgets(BuildContext context) {
-    return Column(
-      children: [
-        CodeInputWidget(
-          onCodeEntered: (code) => print('Entered code: $code'),
-        ),
-        const SizedBox(
-          height: 24,
-        ),
-        UniversalButton(
-          id: 12,
-          title: "Заголовок, максимум 2 строк",
-          desc: "Описание краткое, максимум 3-4 строчки",
-          state: UniversalButtonState.skeleton,
-          onPressed: () => print("Skeleton click"),
-        ),
-        const SizedBox(height: 24),
-        UniversalButton(
-          id: 12,
-          title: "Заголовок, максимум 2 строк",
-          desc: "Описание краткое, максимум 3-4 строчки",
-          state: UniversalButtonState.active,
-          onPressed: () => print("Active click"),
-        ),
-        const SizedBox(height: 24),
-        UniversalButton(
-          id: 12,
-          title: "Заголовок, максимум 2 строк",
-          desc: "Описание краткое, максимум 3-4 строчки",
-          state: UniversalButtonState.highlight,
-          onPressed: () => print("Highlight click"),
-        ),
-        const SizedBox(height: 24),
-        CustomButtonWidget(
-          onPressed: () => print("Primary click"),
-          variant: CustomButtonVariants.primary,
-          text: "Button",
-          leftSvg: SvgPicture.asset(dotSvgPath,
-              colorFilter:
-                  const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
-          showLeftSvg: true,
-          rightSvg: SvgPicture.asset(dotSvgPath,
-              colorFilter:
-                  const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
-          showRightSvg: true,
-        ),
-        const SizedBox(height: 24),
-        CustomButtonWidget(
-          onPressed: () => print("Secondary click"),
-          variant: CustomButtonVariants.secondary,
-          text: "Button",
-        ),
-        const SizedBox(height: 24),
-        CustomButtonWidget(
-          onPressed: () => print("Terciary click"),
-          variant: CustomButtonVariants.terciary,
-          text: "Button",
-        ),
-        const SizedBox(height: 24),
-        CustomTag(
-          text: "Tag",
-          leftSvg: SvgPicture.asset(playSvgPath,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).primaryColor, BlendMode.srcIn)),
-          showLeftSvg: true,
-          rightSvg: SvgPicture.asset(dotSvgPath,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).primaryColor, BlendMode.srcIn)),
-          showRightSvg: true,
-        ),
-      ],
-    );
+    Widget allWidgets(BuildContext context) {
+      return Column(
+        children: [
+          CodeInputWidget(
+            onCodeEntered: (code) => print('Entered code: $code'),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          UniversalButton(
+            id: 12,
+            title: "Заголовок, максимум 2 строк",
+            desc: "Описание краткое, максимум 3-4 строчки",
+            state: UniversalButtonState.skeleton,
+            onPressed: () {
+              ToastManager().showToast(
+                  context,
+                  ToastWidget(
+                    variant: ToastVariant.informative,
+                    title: "Оба! Вы успешно нажали на кнопку",
+                  ));
+            },
+          ),
+          const SizedBox(height: 24),
+          UniversalButton(
+            id: 12,
+            title: "Заголовок, максимум 2 строк",
+            desc: "Описание краткое, максимум 3-4 строчки",
+            state: UniversalButtonState.active,
+            onPressed: () => print("Active click"),
+          ),
+          const SizedBox(height: 24),
+          UniversalButton(
+            id: 12,
+            title: "Заголовок, максимум 2 строк",
+            desc: "Описание краткое, максимум 3-4 строчки",
+            state: UniversalButtonState.highlight,
+            onPressed: () => print("Highlight click"),
+          ),
+          const SizedBox(height: 24),
+          CustomButtonWidget(
+            onPressed: () => print("Primary click"),
+            variant: CustomButtonVariants.primary,
+            text: "Button",
+            leftSvg: SvgPicture.asset(dotSvgPath,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+            showLeftSvg: true,
+            rightSvg: SvgPicture.asset(dotSvgPath,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+            showRightSvg: true,
+          ),
+          const SizedBox(height: 24),
+          CustomButtonWidget(
+            onPressed: () => print("Secondary click"),
+            variant: CustomButtonVariants.secondary,
+            text: "Button",
+          ),
+          const SizedBox(height: 24),
+          CustomButtonWidget(
+            onPressed: () => print("Terciary click"),
+            variant: CustomButtonVariants.terciary,
+            text: "Button",
+          ),
+          const SizedBox(height: 24),
+          CustomTag(
+            text: "Tag",
+            leftSvg: SvgPicture.asset(playSvgPath,
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).primaryColor, BlendMode.srcIn)),
+            showLeftSvg: true,
+            rightSvg: SvgPicture.asset(dotSvgPath,
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).primaryColor, BlendMode.srcIn)),
+            showRightSvg: true,
+          ),
+        ],
+      );
+    }
   }
 }
