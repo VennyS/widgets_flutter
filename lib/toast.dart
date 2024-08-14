@@ -105,7 +105,8 @@ class ToastWidget extends StatefulWidget {
     this.description,
     this.colors,
     this.icons,
-    this.duration = const Duration(seconds: 3), // Default duration is 3 seconds
+    this.duration =
+        const Duration(seconds: 100000000), // Default duration is 3 seconds
     this.showTitle = true, // Default is to show the title
     this.showDescription = true, // Default is to show the description
   });
@@ -156,12 +157,15 @@ class ToastWidgetState extends State<ToastWidget> {
 
     return Container(
       /// Set the background color based on the variant.
+      // constraints:
+      //     BoxConstraints(maxWidth: MediaQuery.of(context).size.width - 32),
       decoration: BoxDecoration(
         color: _colors[widget.variant],
         borderRadius: BorderRadius.circular(16), // Rounded corners
       ),
       padding: const EdgeInsets.all(16), // Padding inside the toast
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             CrossAxisAlignment.center, // Aligns the children to the center
         children: [
@@ -169,6 +173,7 @@ class ToastWidgetState extends State<ToastWidget> {
           const SizedBox(width: 16), // Space between the icon and text
           Expanded(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment:
                   CrossAxisAlignment.start, // Align text to the start
               children: [
